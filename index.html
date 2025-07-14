@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Passaporte Digital do Produto - Somengil</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0; padding: 20px 20px 60px 20px;
+    background: #f5f5f5;
+    position: relative;
+    min-height: 100vh;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  header img {
+    height: 60px;
+  }
+  h1 {
+    color: #004080;
+    text-align: center;
+    flex-grow: 1;
+    margin: 0 20px;
+    font-weight: 700;
+    font-size: 24px;
+  }
+  .model-list {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .model-card {
+    background: white;
+    border: 2px solid #004080;
+    border-radius: 8px;
+    padding: 15px 20px;
+    cursor: pointer;
+    width: 150px;
+    text-align: center;
+    transition: background 0.3s, color 0.3s;
+  }
+  .model-card:hover {
+    background: #004080;
+    color: white;
+  }
+  .model-card.active {
+    background: #004080;
+    color: white;
+  }
+  .pdp-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #ccc;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .pdp-section {
+    margin-bottom: 20px;
+  }
+  .pdp-section h3 {
+    border-bottom: 2px solid #004080;
+    padding-bottom: 5px;
+    margin-top: 0;
+  }
+  pre {
+    background: #e8e8e8;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+  }
+  footer {
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
+  }
+  footer img {
+    height: 40px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <img src="https://static.wixstatic.com/media/a6967f_eee0d017524f4a48bf2870cc2385c10b~mv2.png" alt="Logo Esquerda" />
+  <h1>Passaporte Digital do Produto (PDP) - Somengil</h1>
+  <img src="https://static.wixstatic.com/media/a6967f_d83f45c5e4f446009fcfd984d5d85f6f~mv2.png" alt="Logo Direita" />
+</header>
+
+<div class="model-list" id="modelList">
+  <div class="model-card" data-model="MWS200">MWS200</div>
+  <div class="model-card" data-model="MWS300">MWS300</div>
+  <div class="model-card" data-model="MWS500">MWS500</div>
+  <div class="model-card" data-model="MWS700">MWS700</div>
+  <div class="model-card" data-model="MWS715">MWS715</div>
+</div>
+
+<div class="pdp-container" id="pdpContainer">
+  <p>Selecione um modelo acima para ver o Passaporte Digital do Produto.</p>
+</div>
+
+<footer>
+  <img src="https://static.wixstatic.com/media/a6967f_ca1de2a013c34965b16b459d045fb86c~mv2.png" alt="Logo Rodapé" />
+</footer>
+
+<script>
+  const pdpData = {
+    MWS200: {
+      tecnico: `- Potência: 2000W
+- Capacidade: 200 litros
+- Consumo energético: Classe A`,
+      materiais: `- Estrutura em aço inoxidável
+- Componentes eletrônicos certificados`,
+      manutencao: `- Limpeza semanal recomendada
+- Revisão anual obrigatória`,
+      eficiencia: `- Consumo médio: 1.2 kWh/ciclo
+- Cumpre regulamento Ecodesign`,
+      reciclavel: `- 95% reciclável
+- Componentes desmontáveis para reciclagem`,
+      qr: 'https://somengil.com/pdp/MWS200'
+    },
+    MWS300: {
+      tecnico: `- Potência: 3000W
+- Capacidade: 300 litros
+- Consumo energético: Classe A+`,
+      materiais: `- Estrutura em aço inoxidável reforçado
+- Componentes eletrônicos certificados`,
+      manutencao: `- Limpeza semanal recomendada
+- Revisão anual obrigatória`,
+      eficiencia: `- Consumo médio: 1.1 kWh/ciclo
+- Cumpre regulamento Ecodesign`,
+      reciclavel: `- 96% reciclável
+- Componentes desmontáveis para reciclagem`,
+      qr: 'https://somengil.com/pdp/MWS300'
+    },
+    MWS500: {
+      tecnico: `- Potência: 5000W
+- Capacidade: 500 litros
+- Consumo energético: Classe A++`,
+      materiais: `- Estrutura em aço inoxidável reforçado
+- Componentes eletrônicos certificados`,
+      manutencao: `- Limpeza semanal recomendada
+- Revisão anual obrigatória`,
+      eficiencia: `- Consumo médio: 0.9 kWh/ciclo
+- Cumpre regulamento Ecodesign`,
+      reciclavel: `- 97% reciclável
+- Componentes desmontáveis para reciclagem`,
+      qr: 'https://somengil.com/pdp/MWS500'
+    },
+    MWS700: {
+      tecnico: `- Potência: 7000W
+- Capacidade: 700 litros
+- Consumo energético: Classe A+++`,
+      materiais: `- Estrutura em aço inoxidável reforçado
+- Componentes eletrônicos certificados`,
+      manutencao: `- Limpeza semanal recomendada
+- Revisão anual obrigatória`,
+      eficiencia: `- Consumo médio: 0.8 kWh/ciclo
+- Cumpre regulamento Ecodesign`,
+      reciclavel: `- 98% reciclável
+- Componentes desmontáveis para reciclagem`,
+      qr: 'https://somengil.com/pdp/MWS700'
+    },
+    MWS715: {
+      tecnico: `- Potência: 7150W
+- Capacidade: 715 litros
+- Consumo energético: Classe A+++`,
+      materiais: `- Estrutura em aço inoxidável reforçado
+- Componentes eletrônicos certificados`,
+      manutencao: `- Limpeza semanal recomendada
+- Revisão anual obrigatória`,
+      eficiencia: `- Consumo médio: 0.7 kWh/ciclo
+- Cumpre regulamento Ecodesign`,
+      reciclavel: `- 99% reciclável
+- Componentes desmontáveis para reciclagem`,
+      qr: 'https://somengil.com/pdp/MWS715'
+    }
+  };
+
+  const modelList = document.getElementById('modelList');
+  const pdpContainer = document.getElementById('pdpContainer');
+
+  modelList.addEventListener('click', e => {
+    if (!e.target.classList.contains('model-card')) return;
+
+    [...modelList.children].forEach(card => card.classList.remove('active'));
+    e.target.classList.add('active');
+
+    const model = e.target.dataset.model;
+    const data = pdpData[model];
+
+    pdpContainer.innerHTML = `
+      <h2>Passaporte Digital do Produto - ${model}</h2>
+      <div class="pdp-section">
+        <h3>Informações Técnicas</h3>
+        <pre>${data.tecnico}</pre>
+      </div>
+      <div class="pdp-section">
+        <h3>Materiais e Componentes</h3>
+        <pre>${data.materiais}</pre>
+      </div>
+      <div class="pdp-section">
+        <h3>Manual de Manutenção</h3>
+        <pre>${data.manutencao}</pre>
+      </div>
+      <div class="pdp-section">
+        <h3>Eficiência Energética</h3>
+        <pre>${data.eficiencia}</pre>
+      </div>
+      <div class="pdp-section">
+        <h3>Reciclabilidade e Desmontagem</h3>
+        <pre>${data.reciclavel}</pre>
+      </div>
+      <div class="pdp-section">
+        <h3>Link QR Code</h3>
+        <a href="${data.qr}" target="_blank">${data.qr}</a>
+      </div>
+    `;
+  });
+</script>
+
+</body>
+</html>
